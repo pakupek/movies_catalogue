@@ -16,7 +16,7 @@ def utility_processor():
 
 @app.route('/')
 def homepage():
-    movies = tmdb_client.get_movies(how_many=5)
+    movies = tmdb_client.get_movies(how_many=4)
     return render_template("homepage.html", movies=movies)
 
 
