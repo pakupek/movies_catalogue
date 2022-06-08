@@ -1,0 +1,85 @@
+<<<<<<< HEAD
+{% extends "index.html" %}
+
+{% block content %}
+<style>
+a {
+  color: wheat;
+  position: relative;
+  text-decoration: none;
+  transition: color .4s ease-out;
+}
+
+a:hover {
+  color: blueviolet;
+  right: 0;
+  text-decoration: none;
+}
+
+a:hover:after {
+  border-color: #457DFB;
+  right: 0;
+}
+
+a:after {
+  border-radius: 1em;
+  border-top: .1em solid #2F56B0;
+  content: "";
+  position: absolute;
+    right: 100%;
+    bottom: .14em;
+    left: 0;
+  transition: right .4s cubic-bezier(0,.5,0,1),
+              border-color .4s ease-out;
+}
+
+a:hover:after {
+  animation: anchor-underline 2s cubic-bezier(0,.5,0,1) infinite;
+  border-color: blueviolet;
+}
+
+@keyframes anchor-underline {
+  0%, 10% {
+    left: 0;
+    right: 100%;
+  }
+  40%, 60% {
+    left: 0;
+    right: 0;
+  }
+  90%, 100% {
+    left: 100%;
+    right: 0;
+  }
+}
+.card-img-top{
+    background-color: rgba(0,0,0,0.7);
+    transition: linear .2s;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}
+</style>
+
+
+
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Welcome to my movie library</h1>
+        <p class="lead">Only the best titles can be found here!</p>
+    </div>
+    {% for movie in movies %}
+        <div class="col-lg-3 col-md-6 mb-4" style="text-align: center;">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem; border-radius: 20px;">
+                <img class="card-img-top" src="{{ tmdb_image_url(movie.poster_path, "w780") }}" alt="" style="border-radius: 20px;">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{ movie.homepage }}">{{ movie.original_title }} </a></h5>
+                    <p class="card-text">{{ movie.overview }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
