@@ -2,25 +2,25 @@
 
 {% block content %}
 <style>
-a {
+.card-body a{
   color: wheat;
   position: relative;
   text-decoration: none;
   transition: color .4s ease-out;
 }
 
-a:hover {
+.card-body a:hover {
   color: blueviolet;
   right: 0;
   text-decoration: none;
 }
 
-a:hover:after {
+.card-body a:hover:after {
   border-color: #457DFB;
   right: 0;
 }
 
-a:after {
+.card-body a:after {
   border-radius: 1em;
   border-top: .1em solid #2F56B0;
   content: "";
@@ -32,7 +32,7 @@ a:after {
               border-color .4s ease-out;
 }
 
-a:hover:after {
+.card-body a:hover:after {
   animation: anchor-underline 2s cubic-bezier(0,.5,0,1) infinite;
   border-color: blueviolet;
 }
@@ -57,27 +57,94 @@ a:hover:after {
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
+.button {
+  display: flex;
+  height: 50px;
+  padding: 0;
+  background: #009578;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #008168;
+}
+
+.button:active {
+  background: #006e58;
+}
+
+.button_text, .button_icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 24px;
+  color: #fff;
+  height: 100%;
+}
+
+.button_icon {
+  font-size: 1.5em;
+  background: rgba(0, 0, 0, 0.08);
+}
+.buttons_field{
+  display: flex;
+  justify-content: space-between;
+}
 
 </style>
-
-
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h1 class="mt-5">Welcome to my movie library</h1>
-        <p class="lead">Only the best titles can be found here!</p>
-    </div>
-    {% for movie in movies %}
-        <div class="col-lg-3 col-md-6 mb-4" style="text-align: center;">
-            <div class="card text-white bg-secondary mb-3" style="max-width: 18rem; border-radius: 20px;">
-                <img class="card-img-top" src="{{ tmdb_image_url(movie.poster_path, "w780") }}" alt="" style="border-radius: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="{{ url_for('movie_details', movie_id=movie.id) }}">{{ movie.original_title }} </a></h5>
-                    <p class="card-text">{{ movie.overview }}</p>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+<div class="col-lg-12 text-center" style="margin-top: -10px;">
+  <h1 class="mt-5">Welcome to my movie library</h1>
+    <p class="lead">Only the best titles can be found here!</p>
 </div>
 
+<div class="buttons_field">
+  <a href="{{ url_for('homepage', list_type="now_playing") }}" class="btn-outline-info">
+    <button type="button" class="button">
+      <span class="button_text">Now playing</span>
+      <span class="button_icon">
+        <ion-icon name="play-outline"></ion-icon>
+      </span>
+    </button>
+  </a>
+  <a href="{{ url_for('homepage', list_type="top_rated") }}" class="btn-outline-info">
+    <button type="button" class="button">
+      <span class="button_text">Top rated</span>
+      <span class="button_icon">
+        <ion-icon name="flash-outline"></ion-icon>
+      </span>
+    </button>
+  </a>
+  <a href="{{ url_for('homepage', list_type="upcoming") }}" class="btn-outline-info">
+    <button type="button" class="button">
+      <span class="button_text">Upcoming</span>
+      <span class="button_icon">
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+      </span>
+    </button>
+  </a>
+</div>
+<br>
+
+<div class="row">
+  
+  {% for movie in movies %}
+    <div class="col-lg-3 col-md-6 mb-4" style="text-align: center; margin-top: 20px;">
+      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem; border-radius: 20px;">
+        <img class="card-img-top" src="{{ tmdb_image_url(movie.poster_path, "w780") }}" alt="" style="border-radius: 20px;">
+        <div class="card-body">
+          <h5 class="card-title"><a href="{{url_for('movie_details', movie_id=movie.id)}}" class="title_link">{{ movie.original_title }} </a></h5>
+            <p class="card-text">{{ movie.overview }}</p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 {% endblock %}
 
