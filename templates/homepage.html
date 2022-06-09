@@ -57,6 +57,7 @@ a:hover:after {
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
+
 </style>
 
 
@@ -70,7 +71,7 @@ a:hover:after {
             <div class="card text-white bg-secondary mb-3" style="max-width: 18rem; border-radius: 20px;">
                 <img class="card-img-top" src="{{ tmdb_image_url(movie.poster_path, "w780") }}" alt="" style="border-radius: 20px;">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{{ url_for('movie_details', movie_id=movie_id) }}">{{ movie.original_title }} </a></h5>
+                    <h5 class="card-title"><a href="{{ url_for('movie_details', movie_id=movie.id) }}">{{ movie.original_title }} </a></h5>
                     <p class="card-text">{{ movie.overview }}</p>
                 </div>
             </div>

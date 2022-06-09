@@ -1,13 +1,9 @@
 from flask import Flask, render_template
-import json
-import requests
 import tmdb_client
 
 
 app = Flask(__name__)
-'''
-def movie_details(movie_id):
-'''
+
 
 
 
@@ -25,8 +21,9 @@ def homepage():
 
 @app.route("/movie/<movie_id>")
 def movie_details(movie_id):
-    movie = movie.get(movie_id)
-    return render_template("movie_details.html", movies_id=movie_id)
+    details = tmdb_client.get_single_movie(movie_id)
+    cast = tmdb_client.get_single_movie_cast(movie_id)
+    return render_template("movie_details.html", movie=details, cast=cast)
 
 
 if __name__ == '__main__':
