@@ -1,10 +1,14 @@
 import requests
-
+import random
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4NzEwMzY4MmY0ZWQ0NTI3Y2QzYjYzZDM1NTcyZmU3MiIsInN1YiI6IjYyOWY4ODY3ZDIxNDdjMTE3ZTYzZTNlYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.rmqYp6McgetjqfoH6uXJzJqlyBwVTZVyG8qTlY0glw8"
 API_TOKEN2 = "87103682f4ed4527cd3b63d35572fe72"
 
-def get_movies_list(list_type='popular'):
-    end_point = f"https://api.themoviedb.org/3/movie/{list_type}/"
+
+list = ["popular","upcoming","top_rated","now_playing"]
+
+
+def get_movies_list(list_type):
+    end_point = f"https://api.themoviedb.org/3/movie/{list_type}"
     headers = {
         "Authorization": f"Bearer {API_TOKEN}"
     }
