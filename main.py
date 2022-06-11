@@ -14,9 +14,36 @@ def utility_processor():
 
 @app.route('/')
 def homepage():
-    selected_list = request.args.get('list_type', "popular")
-    movies = tmdb_client.get_movies(how_many=4, list_type=selected_list)
-    return render_template("homepage.html", movies=movies, current_list=selected_list)
+    return render_template("homepage.html")
+
+
+@app.route('/nowplaying/')
+def nowplaying():
+    selected_list = request.args.get("list_type","now_playing")
+    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
+    return render_template("nowplaying.html", movies=movies, current_list=selected_list)
+
+
+@app.route('/toprated/')
+def toprated():
+    selected_list = request.args.get("list_type","top_rated")
+    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
+    return render_template("toprated.html", movies=movies, current_list=selected_list)
+
+
+@app.route('/upcoming/')
+def upcoming():
+    selected_list = request.args.get("list_type","upcoming")
+    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
+    return render_template("upcoming.html", movies=movies, current_list=selected_list)
+
+
+@app.route('/popular/')
+def popular():
+    selected_list = request.args.get("list_type","popular")
+    movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
+    return render_template("popular.html", movies=movies, current_list=selected_list)
+
 
 
 @app.route("/movie/<movie_id>")
