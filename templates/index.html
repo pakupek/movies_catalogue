@@ -5,15 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-            <script type="application/javascript">
-                const activePage = window.location.pathname;
-                const navLinks = document.querySelectorAll('ul a').forEach(link => {
-                    if(link.href.includes('${activePage}')){
-                        link.classList.add('active');
-                    }
-                })
-            </script>	
+        <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>	
         <title>Movies catalogue</title>
         <!-- Favicon-->
 
@@ -37,7 +29,7 @@
 		            background-position: 0% 50%;
 	            }
             }
-            .nav{
+            ul{
                 float: left;
                 list-style: none;
             }
@@ -65,7 +57,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <ul class="nav">
+            <ul>
                 <li>
                     <a href="{{ url_for('nowplaying', list_type="now_playing") }}">Now playing</a>
                 </li>
